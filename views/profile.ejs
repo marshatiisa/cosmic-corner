@@ -1,0 +1,55 @@
+<%- include('partials/header') -%>
+<div class="container">
+<nav>
+      <input type="text" placeholder="search">
+      <!-- <input type="submit" value="Search 🔍"> -->
+    
+      <ul row justify-content-center mt-5>
+        <a href="/products"><li>🖼️ Products</li></a>
+        <a href="/cart"><li>🛒 Cart</li></a>
+        <a href="/profile"><li>🚧 Main Page</li></a>
+  
+    </ul>
+  
+</nav>
+
+  <div class="imageDisplay row justify-content-center mt-5">
+
+  </div>
+  <div class="feature">
+      <h2>Featured Products</h2>
+      <form action="/post/addToCart" method="post">
+
+      <div class="featureDisplay">
+        <img src="imgs/birds.jpeg" class="rounded float-start" alt="">
+        <button>Add To Cart</button>
+      </div>
+      
+      <div class="featureDisplay">
+        <img src="imgs/retro.jpeg" class="rounded float-start" alt="">
+        <button>Add To Cart</button>
+      </div>
+      
+      <div class="featureDisplay">
+        <img src="imgs/hand.jpeg" class="rounded float-start" alt="">
+        <input type="submit" class="addToCart" name="submit" value="Add To Cart"></input>
+      </div>
+</form>
+      <div class="col-6">
+        <ul class="row list-unstyled">
+        <% for(var i=0; i<posts.length; i++) {%>
+          <li class="col-6 justify-content-between mt-5">
+            <a href="/post/<%= posts[i]._id%>">
+              <img class="img-fluid" src="<%= posts[i].image%>">
+            </a>
+          </li>
+        <% } %>
+        </ul>
+        <div class="row justify-content-center mt-5">
+          <a class="btn btn-primary" href="/feed">Return to Feed</a>
+        </div>  
+      </div>  
+    </div>
+  </div>
+  </div>
+<%- include('partials/footer') -%>

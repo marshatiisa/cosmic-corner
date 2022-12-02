@@ -1,0 +1,32 @@
+<%- include('partials/header') -%>
+
+<body>
+  <nav>
+    <div class="row">
+    
+      <section class="">
+        <div class="col-sm-6">
+        <h3>Products</h3>
+         <ul class="messages">
+          <% for(var i=0; i< products.length; i++) {%>
+          <form action="/post/addToCart" method="post">
+           <div class="d-sm-flex flex-row mb-3  align-content-start">
+                <li class="message">
+                  <img src="/imgs/<%= products[i].image %>" alt="">
+                  <span><%= products[i].title %></span> 
+                  <span>$<%= products[i].price %></span>
+                <input type="submit" class="addToCart" name="submit" value="Add To Cart"></input>
+                <input type="hidden" name="title" value="<%= products[i].title %>">
+                <input type="hidden" name="price" value="<%= products[i].price %>">
+                <input type="hidden" name="img" value="<%= products[i].image %>">
+                <input type="hidden" name="productId" value="<%= products[i]._id %>">
+
+               </li>
+            </div>
+            </form>
+              <% } %>
+        </section>
+        
+    </main>
+</body>
+<%- include('partials/footer') -%>

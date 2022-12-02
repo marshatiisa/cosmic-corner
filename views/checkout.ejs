@@ -1,0 +1,40 @@
+<%- include('partials/header') -%>
+
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-credit-card"></span> Fake checkout</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+<div class="row">
+<h2>Select shipping method</h2>
+<select name="shipping" id="ship">
+  <option value="">Lani shipping</option>
+  <option value="">Dinosaur express</option>
+  <option value="">Controller views</option>
+</select>
+</div>
+    <div class="row">
+
+        
+        <div class="col-sm-6">
+          
+          <h3>Your Order</h3>
+          <ul class="messages">
+          <% for(var i=0; i<cart.products.length; i++) {%>
+            <li class="message">
+              <img src="/imgs/<%= cart.products[i].image %>" alt="">
+              <span><%= cart.products[i].name %></span> 
+              <span>$<%= cart.products[i].price %></span>
+              <span><%= cart.products[i].time %></span>
+              <button class="fa-trash">Delete from cart</button>
+            </li>
+          <% } %>
+          </ul>
+          <p class=" bg-dark text-light fs-1">Your total price is:$<%=totalPrice%></p>
+          <button>Pay using Stripe</button>
+           
+</div>
+</div>
+</div>
+<%- include('partials/footer') -%>
