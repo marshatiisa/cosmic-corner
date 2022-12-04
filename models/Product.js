@@ -17,7 +17,10 @@ const ProductSchema = new mongoose.Schema({
     type: Number,
     require: true,
   },
- 
+ featured:{
+  type: Boolean,
+  require: false,
+ }
 });
 
 module.exports = mongoose.model("Product", ProductSchema);

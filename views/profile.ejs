@@ -1,55 +1,85 @@
 <%- include('partials/header') -%>
 <div class="container">
-<nav>
-      <input type="text" placeholder="search">
-      <!-- <input type="submit" value="Search 🔍"> -->
+<nav class="navbar navbar-expand-lg bg-light">
+      <!-- <input type="text" placeholder="search"> -->
+      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for posters.." title="Type in a name">
+
+        <!-- <ul id="myUL"> -->
+          <!-- <% for(var i=0; i<products.length; i++) {%> -->
+          <!-- <li> -->
+            <!-- <a><%=products[i].title %></a> -->
+            <!-- <img src="/imgs/<%=products[i].image %>"></img> -->
+          <!-- </li> -->
+          <!-- <%}%> -->
+        <!-- </ul> -->
     
       <ul row justify-content-center mt-5>
         <a href="/products"><li>🖼️ Products</li></a>
-        <a href="/cart"><li>🛒 Cart</li></a>
+        <% if(cartSize > 0){ %>
+        <a href="/cart"><li>🛒 Cart(<%= cartSize %>)</li></a>
+        <%} %>
         <a href="/profile"><li>🚧 Main Page</li></a>
   
     </ul>
-  
+
+    <button class="fa fa-toggle-on" onclick="modeFunction()"></button>
 </nav>
 
-  <div class="imageDisplay row justify-content-center mt-5">
+<div class="slideshow-container ">
 
+  <div class="mySlides fade">
+    <div class="numbertext">1 / 3</div>
+    <img src="spaceship.jpg" style="width:100%">
+    <div class="text">Caption Text</div>
   </div>
-  <div class="feature">
-      <h2>Featured Products</h2>
-      <form action="/post/addToCart" method="post">
 
-      <div class="featureDisplay">
-        <img src="imgs/birds.jpeg" class="rounded float-start" alt="">
-        <button>Add To Cart</button>
-      </div>
+  <div class="mySlides fade">
+    <div class="numbertext">2 / 3</div>
+    <img src="earthy.webp" style="width:100%">
+    <div class="text">Caption Two</div>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">3 / 3</div>
+    <img src="green.webp" style="width:100%">
+    <div class="text">Caption Three</div>
+  </div>
+
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+</div>
+
+  <div class="row">
+    <h2>Featured Products</h2>
+      <ul class="messages">
+        <% for(var i=0; i< products.length; i++) {
+          if(products[i].featured){ %>
+        <form action="/post/addToCart" method="post">
+         <div class="d-sm-flex g-col-6 g-col-md-4 ">
+              <li class="message">
+                <img src="/imgs/<%= products[i].image %>" alt="">
+                <span><%= products[i].title %></span> 
+                <span>$<%= products[i].price %></span>
+              <input type="submit" class="addToCart" name="submit" value="Add To Cart"></input>
+              <input type="hidden" name="title" value="<%= products[i].title %>">
+              <input type="hidden" name="price" value="<%= products[i].price %>">
+              <input type="hidden" name="img" value="<%= products[i].image %>">
+              <input type="hidden" name="productId" value="<%= products[i]._id %>">
+
+             </li>
+          </div>
+          </form>
+            <% }} %>
       
-      <div class="featureDisplay">
-        <img src="imgs/retro.jpeg" class="rounded float-start" alt="">
-        <button>Add To Cart</button>
-      </div>
-      
-      <div class="featureDisplay">
-        <img src="imgs/hand.jpeg" class="rounded float-start" alt="">
-        <input type="submit" class="addToCart" name="submit" value="Add To Cart"></input>
-      </div>
-</form>
-      <div class="col-6">
-        <ul class="row list-unstyled">
-        <% for(var i=0; i<posts.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <a href="/post/<%= posts[i]._id%>">
-              <img class="img-fluid" src="<%= posts[i].image%>">
-            </a>
-          </li>
-        <% } %>
-        </ul>
-        <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">Return to Feed</a>
-        </div>  
-      </div>  
     </div>
   </div>
-  </div>
+ 
+  <script src="search.js"></script>
 <%- include('partials/footer') -%>
