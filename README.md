@@ -1,6 +1,6 @@
 # Posters Site
 
-An e-commerce site for posters.
+An e-commerce site for purchasing posters.
 
 # Current Features
 
