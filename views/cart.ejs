@@ -15,9 +15,8 @@
               <% for(var i=0; i<cart.length; i++) {%>
                 <li class="message">
                   <img src="/imgs/<%= cart[i].image %>" alt="">
-                  <span><%= cart[i].title %></span> 
-                  <span>$<%= cart[i].price %></span>
                   <span><%= cart[i].count %></span>
+                  <span><%= cart[i].title %></span> 
                   <span>$<%= cart[i].extension %></span>
 
               <form action="/post/deleteFromCart/<%= cart[i].product %>?_method=DELETE" method="POST" class="col-3">       

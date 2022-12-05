@@ -28,7 +28,9 @@
           <% } %>
           </ul>
           <p class=" bg-dark text-light fs-1">Your total price is:$<%=totalPrice%></p>
-          <button class="">Pay using Stripe</button>
+          <form action="/checkoutSession" method="POST" class="col-3">       
+            <button class="btn btn-primary" type="submit">Pay using stripe</button>
+          </form>
 
 </div>
 </div>

@@ -4,16 +4,22 @@ const Post = require("../models/Post");
 //const Cart = require("../models/Cart");
 const Product = require("../models/Product");
 const CartItem = require("../models/CartItem");
-
+const Stripe = require('stripe');
+const stripe = Stripe('sk_test_51MBOVTGKbr0ibXoEiCA4hUTx8oQ7vvNRiDb1ue8lfKWiSGxkJO5YJIElzQph4Wo46RexGvhVRe1Y9MdOCtFuioaK00pq1cSC4d');
 
 module.exports = {
   getProfile: async (req, res) => {
     try {
       const products = await Product.find();
-      const cartItems = await CartItem.find({user: req.user.id})
+      const cart = await CartItem.find();
+      //const cartItems = await CartItem.find({user: req.user.id})
       // do a map reduce to count the number of items in the cart
       //const totalItems = cartItems.reduce((acc, cartItem) => acc + cartItem.products, 0);
-      res.render("profile.ejs", { products: products, user: req.user, cartSize: cartItems.length, }); // totalItems: totalItems.length });
+      let totalCount = 0
+          for(let i=0;i<cart.length;i++){
+            totalCount += cart[i].count
+          }
+      res.render("profile.ejs", { products: products, user: req.user, cartSize: totalCount }); //cartSize: cartItems.length
     } catch (err) {
       console.log(err);
     }
@@ -26,8 +32,6 @@ module.exports = {
       console.log(err);
     }
   },
-  
-  
   getProducts: async (req, res) => {
     try {
        const products = await Product.find();
@@ -46,14 +50,13 @@ module.exports = {
       console.log(err);
     }
   },
-  //fix the checkout asap
   getCheckout: async (req, res) => {
     try {
       const cart = await CartItem.find({user : req.user._id});
      // console.log(cart, 'is this cart showing up')
       let totalPrice = 0
           for(let i=0;i<cart.length; i++){
-            totalPrice += cart[i].price
+            totalPrice += cart[i].extension
           }
           let totalCount = 0
           for(let i=0;i<cart.length;i++){
@@ -65,28 +68,7 @@ module.exports = {
       console.log(err);
     }
   },
-  // if there isn't a cart that exists, we need to create one
-  // if the cart exists but doesn't have any of this item, we need to add an entry with this item and a count of 1
-  //if the cart already exists and has this item in it, increment the count
-  //upsert, addtoset operator
-//   addToCart: async (req, res) => {
-//     try {
-//       const product = await Product.findById({_id: req.body.productId});
-//       const cart = await Cart.findOne({user: req.user.id});
-// // at this point, we dont know the contents of the cart.. we cant tell if it will empty, have one or two etc products
-//       console.log(product)
-//       const query = {user: req.user.id}
-//       const update = {$addToSet: {products: {product: product._id, title: product.title, image: product.image, cloudinaryId: product.cloudinaryId, price: product.price, count: 1}}, user: req.user.id} // from the cart schema
-//       const options = {upsert: true}
-
-//       await Cart.updateOne(query, update, options)
-      
-//       console.log("Item has been added!");
-//       res.redirect("/cart");
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   },
+  
   addToCart: async (req, res) => {
     try {
       const product = await Product.findById({_id: req.body.productId});
@@ -138,5 +120,54 @@ module.exports = {
     }
   },
 
-  // add search keywords to a database and have an image returned for certain keywords otw return a string that says nothing found for your search
+  createCheckoutSession: async (req, res) => {
+    // console.log(stripe, 'checking what this contains')
+    const cart = await CartItem.find({user : req.user._id});
+    try {
+      res.setHeader("Access-Control-Allow-Origin", "http://localhost:9000");
+      res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
+      res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type");
+      res.setHeader("Access-Control-Allow-Credentials", true);
+  console.log(cart, 'will this cart execute?')
+      let stripeProduct = [];
+      for (let i = 0; i < cart.length; i++) {
+        let product = await stripe.products.create({ name: `${cart[i].title}` });
+        stripeProduct.push({
+          product,
+          quantity: cart[i].count,
+          price: cart[i].price
+        });
+        console.log(stripeProduct, 'hows this array looking')
+      }
+      const lineItems = [];
+      for (let j = 0; j < stripeProduct.length; j++) {
+        let stripePrice = await stripe.prices.create({
+          product: stripeProduct[j].product.id,
+          unit_amount: stripeProduct[j].price,
+          currency: "usd"
+        });
+        lineItems.push({
+          price: stripePrice.id,
+          quantity: stripeProduct[j].count
+        });
+        console.log(stripePrice, 'looking for price')
+      }
+  
+      const session = await stripe.checkout.sessions.create({
+        line_items: lineItems,
+        payment_method_types: ["card"],
+        mode: "payment",
+        success_url: `http://localhost:9000/thankyou/`,
+        cancel_url: `http://localhost:9000/nope/`
+      });
+  
+      res.send(session.url);
+    } catch (err) {
+      res.send(err);
+    }
+  },
+
+
+ // add search keywords to a database and have an image returned for certain keywords otw return a string that says nothing found for your search
+
 };

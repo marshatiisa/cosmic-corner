@@ -3,7 +3,7 @@ const router = express.Router();
 const authController = require("../controllers/auth");
 const homeController = require("../controllers/home");
 const postsController = require("../controllers/posts");
-// const productsController = require("../controllers/products");
+// const paymentController = require("../controllers/payment");
 
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
@@ -20,6 +20,7 @@ router.post("/signup", authController.postSignup);
 router.get("/products", ensureAuth, postsController.getProducts);
 router.get("/cart", ensureAuth, postsController.getCart);
 router.get("/checkout", ensureAuth, postsController.getCheckout);
+router.post("/checkoutSession", ensureAuth, postsController.createCheckoutSession);
 
 router.get("/test", function (req,res){
     console.log('test')
@@ -31,7 +32,7 @@ router.get("/test", function (req,res){
 // router.get("/products", ensureAuth, postsController.getProducts);
 // router.get("/cart", ensureAuth, postsController.getCart);
 // router.get("/checkout", ensureAuth, postsController.getCheckout);
-// router.get("/payment", ensureAuth, postsController.getPayment);
+ //router.get("/payment", ensureAuth, paymentController.getPayment);
 
 
 module.exports = router;

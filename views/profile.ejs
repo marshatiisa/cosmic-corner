@@ -1,17 +1,16 @@
 <%- include('partials/header') -%>
 <div class="container">
-<nav class="navbar navbar-expand-lg bg-light">
-      <!-- <input type="text" placeholder="search"> -->
+<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
       <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for posters.." title="Type in a name">
 
         <!-- <ul id="myUL"> -->
-          <!-- <% for(var i=0; i<products.length; i++) {%> -->
-          <!-- <li> -->
-            <!-- <a><%=products[i].title %></a> -->
-            <!-- <img src="/imgs/<%=products[i].image %>"></img> -->
-          <!-- </li> -->
-          <!-- <%}%> -->
-        <!-- </ul> -->
+          <!-- <% for(var i=0; i<products.length; i++) {%>  -->
+           <!-- <li> -->
+             <!-- <a><%=products[i].title %></a>  --> 
+             <!-- <img src="/imgs/<%=products[i].image %>"></img>  -->
+           <!-- </li>  -->
+           <!-- <%}%>  -->
+         <!-- </ul> -->
     
       <ul row justify-content-center mt-5>
         <a href="/products"><li>🖼️ Products</li></a>
@@ -22,47 +21,49 @@
   
     </ul>
 
-    <button class="fa fa-toggle-on" onclick="modeFunction()"></button>
+    <button class="fa fa-toggle-on btn btn-primary" onclick="modeFunction()"></button>
 </nav>
 
-<div class="slideshow-container ">
+<div class="imageDisplay">
+  <div class="slideshow-container">
 
-  <div class="mySlides fade">
-    <div class="numbertext">1 / 3</div>
-    <img src="spaceship.jpg" style="width:100%">
-    <div class="text">Caption Text</div>
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">2 / 3</div>
-    <img src="earthy.webp" style="width:100%">
-    <div class="text">Caption Two</div>
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">3 / 3</div>
-    <img src="green.webp" style="width:100%">
-    <div class="text">Caption Three</div>
-  </div>
-
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    <div class="mySlides fade">
+      <div class="numbertext">1 / 3</div>
+      <img src="imgs/spaceship.jpg" style="width:100%">
+      <div class="text">Caption Text</div>
+    </div>
+    
+    <div class="mySlides fade">
+      <div class="numbertext">2 / 3</div>
+      <img src="imgs/green.webp" style="width:100%">
+      <div class="text">Caption Two</div>
+    </div>
+    
+    <div class="mySlides fade">
+      <div class="numbertext">3 / 3</div>
+      <img src="imgs/earthy.webp" style="width:100%">
+      <div class="text">Caption Three</div>
+    </div>
+    
+    <a class="prev" onclick="plusSlides(-1)">❮</a>
+    <a class="next" onclick="plusSlides(1)">❯</a>
+    
+    </div>
+    <br>
+    
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span> 
+      <span class="dot" onclick="currentSlide(2)"></span> 
+      <span class="dot" onclick="currentSlide(3)"></span> 
+    </div>
 </div>
-<br>
 
-<div style="text-align:center">
-  <span class="dot" onclick="currentSlide(1)"></span>
-  <span class="dot" onclick="currentSlide(2)"></span>
-  <span class="dot" onclick="currentSlide(3)"></span>
-</div>
-
-  <div class="row">
+  <div class="row gx-5">
     <h2>Featured Products</h2>
       <ul class="messages">
         <% for(var i=0; i< products.length; i++) {
           if(products[i].featured){ %>
         <form action="/post/addToCart" method="post">
-         <div class="d-sm-flex g-col-6 g-col-md-4 ">
               <li class="message">
                 <img src="/imgs/<%= products[i].image %>" alt="">
                 <span><%= products[i].title %></span> 
@@ -74,7 +75,6 @@
               <input type="hidden" name="productId" value="<%= products[i]._id %>">
 
              </li>
-          </div>
           </form>
             <% }} %>
       
