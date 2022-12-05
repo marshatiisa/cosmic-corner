@@ -10,7 +10,7 @@ Checkout
 
 Light or dark mode
 
-Cart size available
+Cart size displayed
 
 # WIP Features
 
@@ -20,7 +20,7 @@ Stripe test payment
 
 Guest access
 
-Wishlist
+Wishlist for users with an account
 
 # Install
 
