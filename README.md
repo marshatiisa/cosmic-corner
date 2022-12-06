@@ -12,9 +12,11 @@ Light or dark mode
 
 Cart size displayed
 
+Stripe test payment
+
 # WIP Features
 
-Stripe test payment
+Shipping info
 
 # Planned Features
 
