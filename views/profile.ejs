@@ -1,9 +1,11 @@
 <%- include('partials/header') -%>
 <div class="container">
-<nav class="navbar navbar-expand-lg" style="background:#333333" >
+<nav class="navbar navbar-expand-lg extend" style="background:#333333" >
 <form action="">
-  <input type="text" name="search" id="myInput" placeholder="Search for posters.." title="Type in a poster name">
-  <input type="submit" name="searchButton" value="search">
+  <div>
+    <input type="text" name="search" id="myInput" placeholder="Search for posters.." title="Type in a poster name" class="search">
+  <input type="submit" name="searchButton" value="search" class="searchButton">
+  </div>
   <% if(search){ %>
   <input type="submit" name="searchButton" value="clear search">
   <%} %>

@@ -1,5 +1,5 @@
 *{
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     /* background: rgb(210,225,252); */
     /* background: black; */
     /* color: white; */
@@ -13,7 +13,16 @@ a{
     width: 100%;
     border: 1px solid black;
    margin: 0 auto; 
+   padding-left: -10%;
 } 
+.search{
+    display: inline;
+}
+.searchButton {
+    display: inline;
+
+    margin-left: 0%;
+}
 ul{
    list-style: none;
    display: inline-block;
@@ -22,6 +31,16 @@ ul{
 li{
     display: inline-block;
     margin-right: 10%;
+    
+}
+
+.productsPosition{
+width: 20%;
+    margin-bottom: 1%;
+}
+
+.spanSpacing {
+    padding-right: 10%;
 }
 
 h1{
@@ -59,6 +78,7 @@ padding-left: 6%;
 img {
     height: 200px;
     width: 220px;
+    margin-right: 0;
      display: block; 
 }
 .button{
@@ -69,14 +89,14 @@ img {
 }
 body {
     padding: 25px;
-    background-color: rgb(244,244,244);
-    color: black;
-  }
-  
-  .dark-mode {
-    background-color: black;
+    background-color:black;
     color: white;
   }
+  
+  /* .dark-mode {
+    background-color: black;
+    color: white;
+  } */
   /* prefers color media query */
 /* save the style  */
 
@@ -94,13 +114,18 @@ footer{
 }
 
 .cart, .checkout, .products{
-    padding-left: 8%;
+    padding-left: 10%;
+}
+
+.prod{
+    width: 100%;
 }
 
 .cardIcon{
     padding-left: 0;
-    margin-left: 1%;
-    padding-bottom: 2%;
+    margin-left: -55%;
+    padding-top: 5%;
+    padding-bottom: 5%;
 }
 
 .shippingSection{

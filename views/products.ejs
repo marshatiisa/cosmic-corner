@@ -18,14 +18,14 @@
 
     <h3>Products</h3>
 
-        <div class="row">
+        <div class="row prod">
          <ul class="messages">
           <% for(var i=0; i< products.length; i++) {%>
-            <li class="message">
+            <li class="message productsPosition">
           <form action="/post/addToCart" method="post">
                   <img src="/imgs/<%= products[i].image %>" alt="">
-                  <span><%= products[i].title %></span> 
-                  <span>$<%= products[i].price %></span>
+                  <span class="spanSpacing"><%= products[i].title %></span> 
+                  <span class="spanSpacing">$<%= products[i].price %></span>
                 <input type="submit" class="addToCart btn btn-dark" name="submit" value="Add To Cart"></input>
                 <input type="hidden" name="title" value="<%= products[i].title %>">
                 <input type="hidden" name="price" value="<%= products[i].price %>">
