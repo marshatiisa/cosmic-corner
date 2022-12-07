@@ -1,3 +1,29 @@
+# Posters Site
+
+An e-commerce site for purchasing posters.
+
+# Current Features
+
+Add to cart
+
+Checkout
+
+Light or dark mode
+
+Cart size displayed
+
+Stripe test payment
+
+# WIP Features
+
+Shipping info
+
+# Planned Features
+
+Guest access
+
+Wishlist for users with an account
+
 # Install
 
 `npm install`
@@ -7,7 +33,7 @@
 # Things to add
 
 - Create a `.env` file in config folder and add the following as `key = value`
-  - PORT = 2121 (can be any port example: 3000)
+  - PORT = 9000
   - DB_STRING = `your database URI`
   - CLOUD_NAME = `your cloudinary cloud name`
   - API_KEY = `your cloudinary api key`
