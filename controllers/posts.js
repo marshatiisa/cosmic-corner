@@ -5,12 +5,16 @@ const Post = require("../models/Post");
 const Product = require("../models/Product");
 const CartItem = require("../models/CartItem");
 const Stripe = require('stripe');
-const stripe = Stripe('sk_test_51MBOVTGKbr0ibXoEiCA4hUTx8oQ7vvNRiDb1ue8lfKWiSGxkJO5YJIElzQph4Wo46RexGvhVRe1Y9MdOCtFuioaK00pq1cSC4d');
+const stripe = Stripe(process.env.STRIPE_KEY);
 
 module.exports = {
   getProfile: async (req, res) => {
+    console.log('mode:', req.mode)
     try {
-      const products = await Product.find();
+      let products = await Product.find();
+      if(req.query.search){
+        products = products.filter(product => product.title.toLowerCase().includes(req.query.search.toLowerCase()))
+      } 
       const cart = await CartItem.find();
       //const cartItems = await CartItem.find({user: req.user.id})
       // do a map reduce to count the number of items in the cart
@@ -19,10 +23,14 @@ module.exports = {
           for(let i=0;i<cart.length;i++){
             totalCount += cart[i].count
           }
-      res.render("profile.ejs", { products: products, user: req.user, cartSize: totalCount }); //cartSize: cartItems.length
+      res.render("profile.ejs", { products: products, user: req.user, cartSize: totalCount, search: req.query.search}); //cartSize: cartItems.length
     } catch (err) {
       console.log(err);
     }
+  },
+  changeMode: async (req, res) => {
+    req.mode = req.params.mode
+    res.send(req.mode)
   },
   getFeed: async (req, res) => {
     try {
@@ -34,9 +42,17 @@ module.exports = {
   },
   getProducts: async (req, res) => {
     try {
-       const products = await Product.find();
+       let products = await Product.find();
+       if(req.query.search){
+        products = products.filter(product => product.title.toLowerCase().includes(req.query.search.toLowerCase()))
+      } 
+      const cart = await CartItem.find();
+      let totalCount = 0
+          for(let i=0;i<cart.length;i++){
+            totalCount += cart[i].count
+          }
        console.log(products)
-      res.render("products.ejs", { user: req.user, products: products });
+      res.render("products.ejs", { user: req.user, products: products, search: req.query.search, cartSize: totalCount });
     } catch (err) {
       console.log(err);
     }
@@ -44,8 +60,12 @@ module.exports = {
   getCart: async (req, res) => {
     try {
       const cart = await CartItem.find({user: req.user.id});
+      let totalCount = 0
+          for(let i=0;i<cart.length;i++){
+            totalCount += cart[i].count
+          }
       console.log('cart',cart)
-      res.render("cart.ejs", { cart: cart, user: req.user});
+      res.render("cart.ejs", { cart: cart, user: req.user, cartSize: totalCount});
     } catch (err) {
       console.log(err);
     }
@@ -130,44 +150,42 @@ module.exports = {
       res.setHeader("Access-Control-Allow-Credentials", true);
   console.log(cart, 'will this cart execute?')
       let stripeProduct = [];
+      const lineItems = [];
+
       for (let i = 0; i < cart.length; i++) {
         let product = await stripe.products.create({ name: `${cart[i].title}` });
-        stripeProduct.push({
-          product,
-          quantity: cart[i].count,
-          price: cart[i].price
-        });
-        console.log(stripeProduct, 'hows this array looking')
-      }
-      const lineItems = [];
-      for (let j = 0; j < stripeProduct.length; j++) {
-        let stripePrice = await stripe.prices.create({
-          product: stripeProduct[j].product.id,
-          unit_amount: stripeProduct[j].price,
+        let price = await stripe.prices.create({
+          product: product.id, 
+          unit_amount: cart[i].price * 100,
           currency: "usd"
-        });
+        })
         lineItems.push({
-          price: stripePrice.id,
-          quantity: stripeProduct[j].count
-        });
-        console.log(stripePrice, 'looking for price')
+          price: price.id,
+          quantity: cart[i].count
+        }) 
       }
-  
+      console.log(lineItems, 'line items')
+
       const session = await stripe.checkout.sessions.create({
         line_items: lineItems,
         payment_method_types: ["card"],
         mode: "payment",
-        success_url: `http://localhost:9000/thankyou/`,
-        cancel_url: `http://localhost:9000/nope/`
+        // change url when you host your site
+        success_url: "http://localhost:9000/thankyou",
+        cancel_url: "http://localhost:9000/canceled"
       });
   
-      res.send(session.url);
+      res.redirect(session.url);
     } catch (err) {
       res.send(err);
     }
   },
-
-
+  getCanceled: (req, res) => {
+    res.render("canceled.ejs");
+  },
+  getThankyou: (req, res) => {
+    res.render("thankyou.ejs");
+  },
  // add search keywords to a database and have an image returned for certain keywords otw return a string that says nothing found for your search
 
 };

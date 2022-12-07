@@ -8,12 +8,12 @@
 a{
     text-decoration: none;
 }
- /* nav{
-    height: 200px;
+ nav{
+    height: 80px;
     width: 100%;
     border: 1px solid black;
    margin: 0 auto; 
-}  */
+} 
 ul{
    list-style: none;
    display: inline-block;
@@ -35,134 +35,81 @@ input{
 }
 
 .imageDisplay{
-height: 300px;
+margin-top: 50px;
+height: 201px;
 border: 1px solid black;
-background: white;
-color: black;
+
 }
 /* feature uncommented for now to focus on bootstrap */
-.feature { 
+/* .feature { 
 height: 300px;
-border: 1px solid black;
+border: 1px solid pink;
 margin: 0 auto;
 padding-left: 6%; 
-}
-.featureDisplay{
+} */
+/* .featureDisplay{
+  margin-top: 100px;
     height: 200px;
     width: 30%;
     border: 1px solid pink;
     float: left;
     margin-right: 2%;
-}
+} */
 
 img {
     height: 200px;
     width: 220px;
-    display: block;
+     display: block; 
 }
-button{
-    float: left;
-    display: block;
+.button{
+    /* float: left; 
+     display: block; */
+     background: black;
+     color: white;
 }
 body {
     padding: 25px;
-    background-color: white;
+    background-color: rgb(244,244,244);
     color: black;
   }
   
-  /* .dark-mode {
+  .dark-mode {
     background-color: black;
     color: white;
-  } */
+  }
+  /* prefers color media query */
+/* save the style  */
+
+@media screen and (prefers-color-scheme: dark) {
+    .button {
+        background-color: white;
+        color: black;
+    }
+  }
+
 footer{
     height: 200px;
     width: 100%;
     border: 1px solid black;
 }
 
-  /*  for slideshow */
-/* Slideshow container */
-.slideshow-container {
-    max-width: 1000px;
-    position: relative;
-    margin: auto;
-  }
-  
-  /* Next & previous buttons */
-  .prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    padding: 16px;
-    margin-top: -22px;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
-  }
-  
-  /* Position the "next button" to the right */
-  .next {
-    right: 0;
-    border-radius: 3px 0 0 3px;
-  }
-  
-  /* On hover, add a black background color with a little bit see-through */
-  .prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.8);
-  }
-  
-  /* Caption text */
-  .text {
-    color: #f2f2f2;
-    font-size: 15px;
-    padding: 8px 12px;
-    position: absolute;
-    bottom: 8px;
+.cart, .checkout, .products{
+    padding-left: 8%;
+}
+
+.cardIcon{
+    padding-left: 0;
+    margin-left: 1%;
+    padding-bottom: 2%;
+}
+
+.shippingSection{
+    padding-bottom: 2.5%;
+}
+
+.after{
     width: 100%;
-    text-align: center;
-  }
-  
-  /* Number text (1/3 etc) */
-  .numbertext {
-    color: #f2f2f2;
-    font-size: 12px;
-    padding: 8px 12px;
-    position: absolute;
-    top: 0;
-  }
-  
-  /* The dots/bullets/indicators */
-  .dot {
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
-  }
-  
-  .active, .dot:hover {
-    background-color: #717171;
-  }
-  
-  /* Fading animation */
-  /* .fade {
-    animation-name: fade;
-    animation-duration: 2.5s;
-  }
-  
-  @keyframes fade {
-    from {opacity: .4} 
-    to {opacity: 1}
-  } */
-  
-  /* On smaller screens, decrease text size */
-  @media only screen and (max-width: 300px) {
-    .prev, .next,.text {font-size: 11px}
-  }
+    padding-left: 22%;
+    padding-top: 10%;
+}
+

@@ -1,14 +1,17 @@
 <%- include('partials/header') -%>
 
-    <div class="container">
+    <div class="container cart">
 
         <div class="page-header text-center p-5">
-            <h1><span class=""></span>Cart</h1>
-            <a href="/products"><li>🖼️ Products</li></a>        
+            <!-- <h1><span class=""></span>Cart</h1> -->
+            <a href="/products"><li>🖼️ Products</li></a> 
+            <% if(cartSize > 0){ %>
+              <a href="/cart"><li>🛒 Cart(<%= cartSize %>)</li></a>
+              <%} %>       
             <a href="/profile"><li>🚧 Main Page</li></a>
             <a href="/logout" class="btn btn-default btn-sm">Logout</a>
         </div>
-    
+        <button class="fa fa-toggle-on btn btn-primary" onclick="modeFunction()"></button>
         <div class="row">
               <h3>Your Cart</h3>
               <ul class="messages">
@@ -29,7 +32,8 @@
     
               
     </div>
-    
+    <script src="mode.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     
 

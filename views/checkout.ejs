@@ -1,12 +1,12 @@
 <%- include('partials/header') -%>
 
-<div class="container">
+<div class="container checkout">
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-credit-card"></span> Checkout</h1>
+        <!-- <h1><span class="fa fa-credit-card"></span> Checkout</h1> -->
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
-<div class="row">
+<div class="btn-group shippingSection">
 <h2>Select free shipping method</h2>
 <select name="shipping" id="ship">
   <option value="">Lani shipping</option>
@@ -15,8 +15,8 @@
 </select>
 </div>
     <div class="row">
- 
-          <h3>Your Order</h3>
+
+          <h1 class="fa fa-credit-card cardIcon">Checkout</h1>
           <ul class="messages">
           <% for(var i=0; i<cart.length; i++) {%>
             <li class="message">
@@ -34,4 +34,6 @@
 
 </div>
 </div>
+<script src="mode.js"></script>
+
 <%- include('partials/footer') -%>

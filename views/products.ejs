@@ -1,33 +1,44 @@
 <%- include('partials/header') -%>
-
+<section class="products">
       <div class="page-header text-center p-5">
         <h1><span class=""></span>Products</h1>
-        <a href="/cart"><li>🛒 Cart</li></a>
+        <% if(cartSize > 0){ %>
+          <a href="/cart"><li>🛒 Cart(<%= cartSize %>)</li></a>
+          <%} %>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
-      
+    <form action="">
+      <input type="text" name="search" id="myInput" placeholder="Search for posters.." title="Type in a poster name">
+      <input type="submit" name="searchButton" value="search">
+      <% if(search){ %>
+      <input type="submit" name="searchButton" value="clear search">
+      <%} %>
+    </form>
+    <button class="fa fa-toggle-on btn btn-primary" onclick="modeFunction()"></button>
+
+    <h3>Products</h3>
+
         <div class="row">
-        <h3>Products</h3>
          <ul class="messages">
           <% for(var i=0; i< products.length; i++) {%>
+            <li class="message">
           <form action="/post/addToCart" method="post">
-           <!-- <div class="d-sm-flex flex-row mb-3  align-content-start"> -->
-                <li class="message">
                   <img src="/imgs/<%= products[i].image %>" alt="">
                   <span><%= products[i].title %></span> 
                   <span>$<%= products[i].price %></span>
-                <input type="submit" class="addToCart" name="submit" value="Add To Cart"></input>
+                <input type="submit" class="addToCart btn btn-dark" name="submit" value="Add To Cart"></input>
                 <input type="hidden" name="title" value="<%= products[i].title %>">
                 <input type="hidden" name="price" value="<%= products[i].price %>">
                 <input type="hidden" name="img" value="<%= products[i].image %>">
                 <input type="hidden" name="productId" value="<%= products[i]._id %>">
               </form>
                </li>
-          <!-- </div> -->
               <% } %>
          </ul>
             </div>
-        
+  </section>
+            <script src="mode.js"></script>
+
     </main>
 
 <%- include('partials/footer') -%>

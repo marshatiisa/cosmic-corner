@@ -45,6 +45,17 @@ app.use(
   })
 );
 
+// function myMiddleware(req, res, next) {
+//   console.log('modeMiddleware', req.mode, req.params.mode)
+//   req.mode = dark
+//   if(req.params.mode){
+//     req.mode = req.params.mode
+//   }
+//   next();
+// }
+// app.use('*', myMiddleware)
+
+
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
@@ -56,7 +67,9 @@ app.use(flash());
 app.use("/", mainRoutes);
 app.use("/post", postRoutes);
 
+
 //Server Running
+
 app.listen(process.env.PORT, () => {
   console.log("Server is running, you better catch it!");
 });

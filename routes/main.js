@@ -21,6 +21,10 @@ router.get("/products", ensureAuth, postsController.getProducts);
 router.get("/cart", ensureAuth, postsController.getCart);
 router.get("/checkout", ensureAuth, postsController.getCheckout);
 router.post("/checkoutSession", ensureAuth, postsController.createCheckoutSession);
+router.get("/thankyou", ensureAuth, postsController.getThankyou);
+router.get("/canceled", ensureAuth, postsController.getCanceled);
+
+router.get("/mode/:mode", ensureAuth, postsController.changeMode);
 
 router.get("/test", function (req,res){
     console.log('test')
