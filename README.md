@@ -1,9 +1,8 @@
 # Cosmic Corner
 
 An e-commerce web application that allows users to purchase beautifully-designed posters about space exploration. Builds with JavaScript, Node.js, and Stripe API. [Live Link](https://cosmic-corner.cyclic.app/) <br/>
- <br/> <br/>
+ <br/> 
 ![cosmiccorner](https://raw.githubusercontent.com/marshatiisa/posters-site/main/cosmic-corner.png)
-
 
 ## Technologies Used
 JavaScript <br/>
@@ -12,14 +11,12 @@ Express.js <br/>
 MongoDB <br/>
 Stripe API <br/>
 
-
-# Current Features
+## Current Features
 1. Posters Store-Front View
 2. Add to Cart
 3. Checkout with Stripe 
 
-
-# Run the Project Locally
+## Run the Project Locally
 1. Click on the green `Code` button above and select the `Download ZIP` option
 2. Once downloaded, unzip the file. It will produce a folder named `Cosmic-Corner`
 3. Open your computer’s Terminal
