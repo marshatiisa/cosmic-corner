@@ -1,6 +1,6 @@
 # Cosmic Corner
 
-An e-commerce web application that allows users to purchase beautifully-designed posters about space exploration. Built with JavaScript, Node.js, and Stripe API. [Live Link](https://cosmic-corner.cyclic.app/) <br/>
+An e-commerce web application that allows users to purchase beautifully-designed posters about space exploration. Built with JavaScript, Node.js, and Stripe API. [Live Link](https://posters-site.cyclic.app/) <br/>
  <br/> 
 ![cosmiccorner](https://raw.githubusercontent.com/marshatiisa/posters-site/main/cosmic-corner.png)
 
@@ -18,7 +18,7 @@ Stripe API <br/>
 
 ## Run the Project Locally
 1. Click on the green `Code` button above and select the `Download ZIP` option
-2. Once downloaded, unzip the file. It will produce a folder named `Cosmic-Corner`
+2. Once downloaded, unzip the file. It will produce a folder named `posters-site-main`
 3. Open your computer’s Terminal
 4. Navigate to the `Cosmic Corner` directory within your Terminal using `Terminal Commands`. If you’re not sure how to do this, use [this helpful guide](https://towardsdatascience.com/17-terminal-commands-every-programmer-should-know-4fc4f4a5e20e)
 5. If you do not have `npm` installed locally. Type the command `brew install npm`
