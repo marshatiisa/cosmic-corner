@@ -1,6 +1,6 @@
 # Cosmic Corner
 
-An e-commerce web application that allows users to purchase beautifully-designed posters about space exploration. Builds with JavaScript, Node.js, and Stripe API. [Live Link](https://cosmic-corner.cyclic.app/) <br/>
+An e-commerce web application that allows users to purchase beautifully-designed posters about space exploration. Built with JavaScript, Node.js, and Stripe API. [Live Link](https://cosmic-corner.cyclic.app/) <br/>
  <br/> 
 ![cosmiccorner](https://raw.githubusercontent.com/marshatiisa/posters-site/main/cosmic-corner.png)
 
