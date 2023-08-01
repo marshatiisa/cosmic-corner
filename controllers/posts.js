@@ -170,7 +170,9 @@ module.exports = {
         line_items: lineItems,
         payment_method_types: ["card"],
         mode: "payment",
-        // change url when you host your site
+        // change url when you host your site 
+        //environment variables
+        // create a variable and a conditional to switch between local host and the site url
         success_url: "http://localhost:9000/thankyou",
         cancel_url: "http://localhost:9000/canceled"
       });
