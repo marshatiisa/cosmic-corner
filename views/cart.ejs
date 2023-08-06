@@ -1,40 +1,72 @@
 <%- include('partials/header') -%>
+      <div class="cosmicNavBar">
+        <a href="/products" class="btn btn-primary cosmicMainActionLocation borderRadius10 displayBlock"><i class="fa-solid fa-house fontSize18"></i></a>
+        <a href="/logout" class="btn btn-secondary cosmicButtonLight cosmicLogoutLocation marginTop10 displayBlock"><i class="fa-solid fa-power-off"></i></a>
+      </div>
+      <div class="cosmicContainer">
+        <h3 class="paddingLeft20">Your Cart<span class="cosmicCartQuantity"><%= cartSize %></span></h3>
+        <% if(cartSize > 1){ %>
+        <form action="/post/emptyCart" method="POST">
+          <button class="btn btn-danger displayInlineBlock emptyCartButton" onclick="confirmEmptyCart()" type="submit"><i class="fa-solid fa-xmark fa-2xl"></i></button>
+        </form>
+        <% } %>
+        <ul class="cosmicCartList">
+          <% for(var i=0; i<cart.length; i++) {%>
+            <li class="cosmicProductListItem">
+            <img src="/imgs/<%= cart[i].image %>" alt="" class="cosmicProductImage width50">
+            <h4 class="cosmicProductTitle"><%= cart[i].title %><span class="cosmicItemQuantity fontSize18"><%= cart[i].count %></span></h4>
+            <h4 class="cosmicProductPrice"><span class="cosmicDollarSign">$</span><%= cart[i].extension %><span class="cosmicDecimal">00</span></h4>
+            <form action="/post/addFromCart/<%= cart[i].product %>?_method=POST" method="POST">
+              <button class="btn btn-dark fa-solid fa-plus cosmicCartAdd" type="submit"></button>
+            </form>
+            <form action="/post/deleteFromCart/<%= cart[i].product %>?_method=DELETE" method="POST">
+              <button class="btn btn-dark fa-solid fa-trash cosmicCartDelete" type="submit"></button>
+            </form>
+          </li>
+        <% } %>
+        <% if(cartSize === 0){ %>
+        <li class="cosmicCheckoutCard">
+          <img class="cosmicProductImage saturate50" src="/imgs/cart-empty.png">
+          <h4 class="maxWidth300 paddingTop15">Uh Oh! Your Cart is Empty...</h4>
+          <div class="cosmicTotal relativeCenter displayInlineBlock textAlignCenter verticalAlignMiddle padding15 marginTop10 marginBottom10">
+            <p class="marginBottom0 fontSize18">Your Total</p>
+            <p class="marginBottom0"><span class="cosmicDollarSign fontSize18">$</span><span class="cosmicProductPrice">00</span><span class="cosmicDecimal fontSize13">00</span></p>
+          </div>
+          <a href="/products" class="btn btn-primary marginTop10 borderRadius10 displayBlock"><i class="fa-solid fa-image fontSize18"></i> &nbsp;Find Posters!</a>
+        </li>
+        <%} %>
+        <% if(cartSize > 0){ %>
+        <li class="cosmicCheckoutCard">
+          <img class="cosmicProductImage saturate50 marginRight0" src="/imgs/thank-you.png">
+          <h4 class="maxWidth300 paddingTop15">Thank you for shopping at <span class="colorCosmic">Cosmic Corner!</span></h4>
+          <div class="cosmicTotal relativeCenter displayInlineBlock textAlignCenter verticalAlignMiddle padding15 marginTop10 marginBottom10">
+            <p class="marginBottom0 fontSize18">Your Total</p>
+            <p class="marginBottom0"><span class="cosmicDollarSign fontSize18">$</span><span class="cosmicProductPrice"><%=totalPrice%></span><span class="cosmicDecimal fontSize13">00</span></p>
+          </div>
+          <div class="testInfoContainer fontSize12 borderColorCosmic" id="paymentTestInfo">
+            <p class="marginBottom0">Use the following info to test payment in the next screen:
+            <p class="testInfoLabel">Email - <span class="testCred">test1234@gmail.com</span></p>
+            <p class="testInfoLabel">Card Number - <span class="testCred">4242 4242 4242 4242</span></p>
+            <p class="testInfoLabel">Expiration - <span class="testCred">12/34</span></p>
+            <p class="testInfoLabel">CVC - <span class="testCred">123</span></p>
+            <p class="testInfoLabel">Name - <span class="testCred">Jane Doe</span></p>
+            <p class="testInfoLabel">Zipcode - <span class="testCred">12345</span></p>
+          </div>
+          <div class="cosmicCheckoutButtons">
+            <form action="/checkoutSession" method="POST" class="">
+              <button class="btn btn-primary cosmicStripe marginTop10" type="submit"  id="stripeButton">Pay with <i class="fa-brands fa-stripe fa-2xl"></i></button>
+            </form>
+            <!-- &nbsp;&nbsp;<form class="">
+              <button class="btn btn-dark cosmicEthereum marginTop10" type="submit">Pay with <i class="fa-brands fa-ethereum fa-l"></i> ETH</button>
+            </form> -->
+          </div>
+        </li>
+        <%} %>
+        </ul>
 
-    <div class="container cart">
+      </div>
 
-        <div class="page-header text-center p-5">
-            <!-- <h1><span class=""></span>Cart</h1> -->
-            <a href="/products"><li>🖼️ Products</li></a> 
-            <% if(cartSize > 0){ %>
-              <a href="/cart"><li>🛒 Cart(<%= cartSize %>)</li></a>
-              <%} %>       
-            <a href="/profile"><li>🚧 Main Page</li></a>
-            <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-        </div>
-        <!-- <button class="fa fa-toggle-on btn btn-primary" onclick="modeFunction()"></button> -->
-        <div class="row">
-              <h3>Your Cart</h3>
-              <ul class="messages">
-              <% for(var i=0; i<cart.length; i++) {%>
-                <li class="message">
-                  <img src="/imgs/<%= cart[i].image %>" alt="">
-                  <span><%= cart[i].count %></span>
-                  <span><%= cart[i].title %></span> 
-                  <span>$<%= cart[i].extension %></span>
-
-              <form action="/post/deleteFromCart/<%= cart[i].product %>?_method=DELETE" method="POST" class="col-3">       
-          <button class="btn btn-primary fa fa-trash" type="submit"></button>
-              </form>
-                </li>
-              <% } %>
-              </ul>
-              <a class="fs-1 linkForCheck" href="/checkout">Checkout</a>
-    
-              
-    </div>
     <script src="mode.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    
-
+    <script src="/js/custom.js"></script>
 <%- include('partials/footer') -%>
