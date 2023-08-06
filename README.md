@@ -1,46 +1,26 @@
-# Posters Site
+# Cosmic Corner
 
-An e-commerce site for purchasing posters.
+An e-commerce web application that allows users to purchase beautifully-designed posters about space exploration. Built with JavaScript, Node.js, and Stripe API. [Live Link](https://posters-site.cyclic.app/) <br/>
+ <br/> 
+![cosmiccorner](https://raw.githubusercontent.com/marshatiisa/posters-site/main/cosmic-corner.png)
 
-# Current Features
+## Technologies Used
+JavaScript <br/>
+Node.JS <br/>
+Express.js <br/>
+MongoDB <br/>
+Stripe API <br/>
 
-Add to cart
+## Current Features
+1. Posters Store-Front View
+2. Add to Cart
+3. Checkout with Stripe 
 
-Checkout
-
-Light or dark mode
-
-Cart size displayed
-
-Stripe test payment
-
-# WIP Features
-
-Shipping info
-
-# Planned Features
-
-Guest access
-
-Wishlist for users with an account
-
-# Install
-
-`npm install`
-
----
-
-# Things to add
-
-- Create a `.env` file in config folder and add the following as `key = value`
-  - PORT = 9000
-  - DB_STRING = `your database URI`
-  - CLOUD_NAME = `your cloudinary cloud name`
-  - API_KEY = `your cloudinary api key`
-  - API_SECRET = `your cloudinary api secret`
-
----
-
-# Run
-
-`npm start`
+## Run the Project Locally
+1. Click on the green `Code` button above and select the `Download ZIP` option
+2. Once downloaded, unzip the file. It will produce a folder named `posters-site-main`
+3. Open your computer’s Terminal
+4. Navigate to the `Cosmic Corner` directory within your Terminal using `Terminal Commands`. If you’re not sure how to do this, use [this helpful guide](https://towardsdatascience.com/17-terminal-commands-every-programmer-should-know-4fc4f4a5e20e)
+5. If you do not have `npm` installed locally. Type the command `brew install npm`
+6. Once `npm` is installed, you can run the command `npm start`
+7. Once the server is up and running, type the following url: `http://localhost:9000` in your browser

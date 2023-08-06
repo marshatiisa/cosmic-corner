@@ -10,15 +10,7 @@
   <input type="submit" name="searchButton" value="clear search">
   <%} %>
 </form>
-         <!-- <ul id="myUL"> 
-           <% for(var i=0; i<products.length; i++) {%>  
-            <li> 
-              <a><%=products[i].title %></a>   
-              <img src="/imgs/<%=products[i].image %>"></img>  
-            </li>  
-            <%}%>  
-          </ul>  -->
-    
+        
       <ul row justify-content-center mt-5>
         <a href="/products"><li>🖼️ Products</li></a>
         <% if(cartSize > 0){ %>
@@ -28,7 +20,7 @@
   
     </ul>
 
-    <button class="fa fa-toggle-on btn btn-primary" onclick="modeFunction()"></button>
+    <!-- <button class="fa fa-toggle-on btn btn-primary" onclick="modeFunction()"></button> -->
 </nav>
 
 <div class="imageDisplay">
@@ -83,4 +75,3 @@
  
   <script src="mode.js"></script>
 <%- include('partials/footer') -%>
-

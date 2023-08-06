@@ -14,7 +14,7 @@ module.exports = {
       let products = await Product.find();
       if(req.query.search){
         products = products.filter(product => product.title.toLowerCase().includes(req.query.search.toLowerCase()))
-      }
+      } 
       const cart = await CartItem.find();
       //const cartItems = await CartItem.find({user: req.user.id})
       // do a map reduce to count the number of items in the cart
@@ -41,42 +41,31 @@ module.exports = {
     }
   },
   getProducts: async (req, res) => {
-  try {
-    let products = await Product.find();
-    if (req.query.search) {
-      products = products.filter(
-        (product) =>
-          product.title.toLowerCase().includes(req.query.search.toLowerCase())
-      );
+    try {
+       let products = await Product.find();
+       if(req.query.search){
+        products = products.filter(product => product.title.toLowerCase().includes(req.query.search.toLowerCase()))
+      } 
+      const cart = await CartItem.find();
+      let totalCount = 0
+          for(let i=0;i<cart.length;i++){
+            totalCount += cart[i].count
+          }
+       console.log(products)
+      res.render("products.ejs", { user: req.user, products: products, search: req.query.search, cartSize: totalCount });
+    } catch (err) {
+      console.log(err);
     }
-    const cart = await CartItem.find({ user: req.user.id }); // Filter cart items for the logged-in user
-    let totalCount = 0;
-    for (let i = 0; i < cart.length; i++) {
-      totalCount += cart[i].count;
-    }
-    console.log(products);
-    res.render("products.ejs", {
-      user: req.user,
-      products: products,
-      search: req.query.search,
-      cartSize: totalCount,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-},
-
+  },
   getCart: async (req, res) => {
     try {
       const cart = await CartItem.find({user: req.user.id});
       let totalCount = 0
-      let totalPrice = 0
           for(let i=0;i<cart.length;i++){
             totalCount += cart[i].count
-            totalPrice += cart[i].extension
           }
       console.log('cart',cart)
-      res.render("cart.ejs", { cart: cart, user: req.user, totalPrice: totalPrice, cartSize: totalCount});
+      res.render("cart.ejs", { cart: cart, user: req.user, cartSize: totalCount});
     } catch (err) {
       console.log(err);
     }
@@ -97,9 +86,9 @@ module.exports = {
       res.render("checkout.ejs", {user: req.user, cart: cart, totalPrice: totalPrice, count: totalCount});
     } catch (err) {
       console.log(err);
-      res.redirect("/cart");
     }
   },
+  
   addToCart: async (req, res) => {
     try {
       const product = await Product.findById({_id: req.body.productId});
@@ -109,36 +98,33 @@ module.exports = {
         }, {upsert: true} //if it doesnt exist create it, if it does hand back it to me
         )
       console.log("Item has been added!");
-      res.redirect("/products");
+      res.redirect("/cart");
     } catch (err) {
       console.log(err);
-      res.redirect("/products");
     }
   },
-  addFromCart: async (req, res) => {
-    try {
-      const product = await Product.findById({ _id: req.params.productId });
-      const existingCartItem = await CartItem.findOneAndUpdate(
-        { user: req.user.id, product: req.params.productId },
-        { $inc: { count: 1, extension: product.price } },
-        { upsert: true, returnOriginal: false }
-      );
-
-      console.log("Added product to cart", product._id);
-      console.log(existingCartItem.count, "count check");
-
-      res.redirect("/cart");
-    } catch (err) {
-      console.log("checking error", err);
-      res.redirect("/cart");
-    }
-  },
+  
   deleteFromCart: async (req, res) => {
     try {
+      // Find product by id
+      // let cart = await Cart.findOne({ user: req.user._id});
+      // Delete image from cloudinary
+      // await cloudinary.uploader.destroy(post.cloudinaryId);
+      // Delete product from the array - use a loop
+      //break stops the for loop
+      // const productId = req.params.productId
+      // for(let i=0; i<cart.products.length; i++){
+      //   if(productId === cart.products[i].product.toString()){
+      //     cart.products.splice(i,1)
+      //     break
+      //   }
+      // }
+        // cart.save()
+
         const product = await Product.findById({_id: req.params.productId});
-        const deletedProduct = await CartItem.findOneAndUpdate({user: req.user.id, product: req.params.productId },
+        const deletedProduct = await CartItem.findOneAndUpdate({user: req.user.id, product: req.params.productId }, 
          {$inc: {count: -1, extension: -product.price}} ,
-          {returnOriginal: false} //gives you the doc after the changes have been applied
+          {returnOriginal: false} //gives you the doc after the changes have been applied 
         )
       console.log("Deleted product from cart",product._id);
       console.log(deletedProduct.count, 'count check')
@@ -150,18 +136,7 @@ module.exports = {
       res.redirect("/cart");
     } catch (err) {
       console.log('checking error', err)
-      res.redirect("/cart");
-    }
-  },
-  emptyCart: async (req, res) => {
-    try {
-      // Delete all items in the user's cart
-      await CartItem.deleteMany({ user: req.user.id });
-
-      res.redirect("/cart");
-    } catch (err) {
-      console.log('checking error', err);
-      res.redirect("/cart");
+      res.redirect("/profile");
     }
   },
 
@@ -180,14 +155,14 @@ module.exports = {
       for (let i = 0; i < cart.length; i++) {
         let product = await stripe.products.create({ name: `${cart[i].title}` });
         let price = await stripe.prices.create({
-          product: product.id,
+          product: product.id, 
           unit_amount: cart[i].price * 100,
           currency: "usd"
         })
         lineItems.push({
           price: price.id,
           quantity: cart[i].count
-        })
+        }) 
       }
       console.log(lineItems, 'line items')
 
@@ -195,11 +170,13 @@ module.exports = {
         line_items: lineItems,
         payment_method_types: ["card"],
         mode: "payment",
-        // change url when you host your site
+        // change url when you host your site 
+        //environment variables
+        // create a variable and a conditional to switch between local host and the site url
         success_url: "http://localhost:9000/thankyou",
         cancel_url: "http://localhost:9000/canceled"
       });
-
+  
       res.redirect(session.url);
     } catch (err) {
       res.send(err);

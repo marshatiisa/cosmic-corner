@@ -1,26 +1,44 @@
 <%- include('partials/header') -%>
-<main>
-  <div class="cosmicNavBar">
-  <span id="cartSize" class="cosmicCartSize"><%= cartSize %></span>
-  <a href="/cart" class="btn btn-primary cosmicMainActionLocation borderRadius10 displayBlock"><i class="fa fa-cart-shopping fontSize18"></i></a>
-  <a href="/logout" class="btn btn-secondary cosmicButtonLight cosmicLogoutLocation marginTop10 displayBlock"><i class="fa fa-power-off"></i></a>
-</div>
-    <div class="">
-     <ul class="cosmicProductList">
-      <% for(var i=0; i< products.length; i++) {%>
-        <li class="cosmicProductListItem">
+<section class="products">
+      <div class="page-header text-center p-5">
+        <h1><span class=""></span>Products</h1>
+        <% if(cartSize > 0){ %>
+          <a href="/cart"><li>🛒 Cart(<%= cartSize %>)</li></a>
+          <%} %>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+    <form action="">
+      <input type="text" name="search" id="myInput" placeholder="Search for posters.." title="Type in a poster name">
+      <input type="submit" name="searchButton" value="search">
+      <% if(search){ %>
+      <input type="submit" name="searchButton" value="clear search">
+      <%} %>
+    </form>
+    <!-- <button class="fa fa-toggle-on btn btn-primary" onclick="modeFunction()"></button> -->
+
+    <h3>Products</h3>
+
+        <div class="row prod">
+         <ul class="messages">
+          <% for(var i=0; i< products.length; i++) {%>
+            <li class="message productsPosition">
           <form action="/post/addToCart" method="post">
-            <img src="/imgs/<%= products[i].image %>" alt="" class="cosmicProductImage">
-            <h4 class="cosmicProductTitle"><%= products[i].title %></h4>
-            <h4 class="cosmicProductPrice"><span class="cosmicDollarSign">$</span><%= products[i].price %><span class="cosmicDecimal">00</span></h4>
-            <input type="submit" class="btn btn-dark cosmicProductButton" name="submit" value="Add To Cart"></input><input type="hidden" name="title" value="<%= products[i].title %>">
-            <input type="hidden" name="price" value="<%= products[i].price %>">
-            <input type="hidden" name="img" value="<%= products[i].image %>">
-            <input type="hidden" name="productId" value="<%= products[i]._id %>">
-          </form>
-        </li>
-          <% } %>
-     </ul>
-  </div>
-</main>
+                  <img src="/imgs/<%= products[i].image %>" alt="">
+                  <span class="spanSpacing"><%= products[i].title %></span> 
+                  <span class="spanSpacing">$<%= products[i].price %></span>
+                <input type="submit" class="addToCart btn btn-dark" name="submit" value="Add To Cart"></input>
+                <input type="hidden" name="title" value="<%= products[i].title %>">
+                <input type="hidden" name="price" value="<%= products[i].price %>">
+                <input type="hidden" name="img" value="<%= products[i].image %>">
+                <input type="hidden" name="productId" value="<%= products[i]._id %>">
+              </form>
+               </li>
+              <% } %>
+         </ul>
+            </div>
+  </section>
+            <script src="mode.js"></script>
+
+    </main>
+
 <%- include('partials/footer') -%>

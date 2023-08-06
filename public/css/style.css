@@ -1,543 +1,140 @@
 *{
-  font-family: Verdana, Tahoma, sans-serif;
-  padding: 0;
-  margin: 0;
+    /* box-sizing: border-box; */
+    /* background: rgb(210,225,252); */
+    /* background: black; */
+    /* color: white; */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-
-body {
-  color: white;
-  background-color: black;
+a{
+    text-decoration: none;
 }
-
-/* .search {
-  display: inline;
+ nav{
+    height: 80px;
+    width: 100%;
+    border: 1px solid black;
+   margin: 0 auto; 
+   padding-left: -10%;
+} 
+.search{
+    display: inline;
 }
-
 .searchButton {
-  display: inline;
-  margin-left: 0%;
+    display: inline;
+
+    margin-left: 0%;
+}
+ul{
+   list-style: none;
+   display: inline-block;
+    width: 40%;
+}
+li{
+    display: inline-block;
+    margin-right: 10%;
+    
 }
 
-.productsPosition {
-  width: 20%;
-  margin-bottom: 1%;
+.productsPosition{
+width: 20%;
+    margin-bottom: 1%;
 }
 
 .spanSpacing {
-  padding-right: 10%;
+    padding-right: 10%;
 }
 
-.imageDisplay {
-  margin-top: 50px;
-  height: 201px;
-  border: 1px solid black;
+h1{
+    display: inline-block;
+    width: 35%;
+    margin-left: 5%;
+}
+input{
+    display: inline-block;
+    margin-right: 10%;
 }
 
-.button {
+.imageDisplay{
+margin-top: 50px;
+height: 201px;
+border: 1px solid black;
+
+}
+/* feature uncommented for now to focus on bootstrap */
+/* .feature { 
+height: 300px;
+border: 1px solid pink;
+margin: 0 auto;
+padding-left: 6%; 
+} */
+/* .featureDisplay{
+  margin-top: 100px;
+    height: 200px;
+    width: 30%;
+    border: 1px solid pink;
+    float: left;
+    margin-right: 2%;
+} */
+
+img {
+    height: 200px;
+    width: 220px;
+    margin-right: 0;
+     display: block; 
+}
+.button{
+    /* float: left; 
+     display: block; */
      background: black;
      color: white;
 }
+body {
+    padding: 25px;
+    background-color:black;
+    color: white;
+  }
+  
+  /* .dark-mode {
+    background-color: black;
+    color: white;
+  } */
+  /* prefers color media query */
+/* save the style  */
 
-.prod {
+@media screen and (prefers-color-scheme: dark) {
+    .button {
+        background-color: white;
+        color: black;
+    }
+  }
+
+footer{
+    height: 200px;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.cart, .checkout, .products{
+    padding-left: 10%;
+}
+
+.prod{
     width: 100%;
 }
 
-.cardIcon {
+.cardIcon{
     padding-left: 0;
     margin-left: -55%;
     padding-top: 5%;
     padding-bottom: 5%;
 }
 
-.shippingSection {
+.shippingSection{
     padding-bottom: 2.5%;
 }
 
-.after {
+.after{
     width: 100%;
     padding-left: 22%;
     padding-top: 10%;
-}*/
-
-/* Cosmic Elements */
-.cosmicContainer {
-  width: 100%;
-  min-width: 480px;
-  margin: 0 auto;
 }
 
-.cosmicInput, .cosmicInput:hover, .cosmicInput:focus {
-  background-color: #111;
-  color: #bbb;
-  border-color: #333;
-}
-
-.cosmicAlert {
-  width: 100%;
-  max-width: 320px;
-  font-size: 12px;
-  background-color: transparent;
-  border-color: transparent;
-  color: red;
-  padding: 0;
-  font-style: italic;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.cosmicPosterMain {
-  width: 300px;
-  height: auto;
-  margin: 0 auto;
-  border: solid 3px white;
-  border-radius: 15px;
-  filter: saturate(100%);
-  animation: shake 4s;
-  animation-iteration-count: infinite;
-  display: block;
-}
-
-.cosmicPosterMain:hover {
-  filter: saturate(50%);
-  animation-play-state: paused;
-}
-
-.cosmicNavBar {
-  position: absolute;
-  top: 2%;
-  right: 1%;
-}
-
-.cosmicButtonLight {
-  background-color: #000;
-  color: #555;
-  border: solid 2px #333;
-  border-radius: 10px;
-}
-
-.cosmicButtonLight:hover {
-  background-color: #333;
-  color: #555;
-}
-
-.cosmicCartSize {
-  position: absolute;
-  top: 1%;
-  right: 0.5%;
-  background-color: red;
-  font-size: 8px;
-  border-radius: 100%;
-  padding: 2px;
-  width: 16px;
-  text-align: center;
-
-}
-
-.cosmicCartList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: left;
-  padding-left: 0;
-  padding-bottom: 100px;
-  list-style-type: none;
-}
-
-.cosmicProductList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding-left: 0;
-  padding-bottom: 100px;
-  list-style-type: none;
-}
-
-.cosmicProductListItem {
-  background-color: #222;
-  border: solid 1px #232323;
-  border-radius: 20px;
-  padding: 15px;
-  margin: 10px;
-}
-
-.cosmicProductImage {
-  width: 300px;
-  height: auto;
-  border-radius: 20px;
-  display: block;
-}
-
-.cosmicProductTitle {
-  padding-top: 10px;
-  font-size: 1.6em;
-}
-
-.cosmicDollarSign {
-  font-weight: normal;
-  font-size: .7em;
-  vertical-align: top;
-}
-
-.cosmicDecimal {
-  font-weight: normal;
-  font-size: .5em;
-  vertical-align: top;
-}
-
-.cosmicProductPrice {
-  padding-top: 10px;
-  font-size: 1.6em;
-  font-weight: 700;
-}
-
-.cosmicProductButton {
-  float: right;
-  background-color: #454545;
-  border-radius: 10px;
-}
-
-.cosmicCartQuantity {
-  width: 35px;
-  height: 35px;
-  border-radius: 100%;
-  text-align: center;
-  line-height: 35px;
-  background-color: #0d6efd;
-  font-size: 20px;
-  margin-left: 10px;
-  display: inline-block;
-  transform: translateY(-2px);
-}
-
-.cosmicItemQuantity {
-  width: 30px;
-  height: 30px;
-  border-radius: 100%;
-  text-align: center;
-  line-height: 29px;
-  background-color: #666;
-  float: right;
-  display: inline-block;
-  margin-left: 10px;
-}
-
-.cosmicCartAdd {
-  border-radius: 10px;
-  float: right;
-  background-color: #0d6efd;;
-  border-color: #0d6efd;;
-  opacity: 70%;
-  margin-left: 5px;
-}
-
-.cosmicCartDelete {
-  border-radius: 10px;
-  float: right;
-  background-color: #900;
-  border-color: #900;
-  opacity: 70%;
-}
-
-.cosmicCheckoutCard {
-  position: relative;
-  background-color: #222;
-  border: solid 1px #232323;
-  border-radius: 20px;
-  padding: 15px;
-  margin: 10px;
-}
-
-.cosmicCheckoutButtons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.cosmicTotal {
-  background-color: #333;
-  border: 2px dashed #999;
-}
-
-.cosmicStripe {
-  background-color: #635bff;
-  border-color: #635bff;
-}
-.cosmicStripe:hover {
-  background-color: #0d6efd;
-  border-color: #0d6efd;
-}
-
-.cosmicEthereum {
-  background-color: #2e2f2f;
-}
-
-.cosmicFooter {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  color: white;
-  text-align: center;
-  padding: 5px 30px;
-  background-color: black;
-  color: #aaa;
-  opacity: 80%;
-}
-.cosmicFootNote {
-  margin-bottom: 0px;
-  font-size: 11px;
-}
-
-.testInfoContainer {
-  background-color: #111;
-  border: 1px dashed #333;
-  color: #555;
-  border-radius: 0.25em;
-  margin-top: 25px;
-  padding: 5px 10px;
-  width: 250px;
-  max-width: 320px;
-  opacity: 95%;
-  font-size: 13px;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.testInfoLabel {
-  color: #565656;
-  text-align: left;
-  margin-bottom: 0;
-  margin-top: 5px;
-}
-
-.testCred {
-  color: #bbb;
-}
-
-#paymentTestInfo {
-  display: none;
-  position: absolute;
-  width: 92%;
-  top: 165px;
-  opacity: 1;
-  padding: 10px 20px;
-}
-
-.emptyCartButton {
-  background-color: transparent;
-  border: 1px solid #dc3545;
-  color: #dc3545;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  font-size: 8px;
-  opacity: 40%;
-  position: absolute;
-  transform: translate(-8px,-38px);
-  right: 1%;
-}
-
-.fa-xmark {
-  transform: translateX(-4px);
-}
-
-/* Positioning Classes */
-.textAlignCenter {
-  text-align: center;
-}
-.verticalAlignMiddle {
-  vertical-align: middle;
-}
-.displayInlineBlock {
-  display: inline-block;
-}
-.displayBlock {
-  display: block;
-}
-.padding15 {
-  padding: 15px;
-}
-.paddingLeft20 {
-  padding-left: 20px;
-}
-.paddingTop15 {
-  padding-top: 15px;
-}
-.paddingTop30 {
-  padding-top: 30px;
-}
-.paddingButton {
-  padding: 5px 30px;
-}
-.margin0Auto {
-  margin: 0 auto;
-}
-.marginTop10 {
-  margin-top: 10px;
-}
-.marginTop15 {
-  margin-top: 15px;
-}
-.marginTop30 {
-  margin-top: 30px;
-}
-.marginBottom0{
-  margin-bottom: 0px;
-}
-.marginBottom10 {
-  margin-bottom: 10px;
-}
-.marginRight0 {
-  margin-right: 0px;
-}
-.zIndex1000 {
-  z-index: 1000;
-}
-.heightAuto {
-  height: auto;
-}
-.maxWidth300 {
-  max-width: 300px;
-}
-.width300 {
-  width:300px;
-}
-.width100p {
-  width:100%;
-}
-.relativeCenter {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.floatRight {
-  float: right;
-}
-.translateDown70 {
-  transform: translateY(70px);
-}
-
-/* Styling Classes */
-.borderColorCosmic {
-  border-color: #0d6efd;
-}
-.colorCosmic {
-  color: #0d6efd;
-}
-.color111 {
-  color: #111;
-}
-.color222 {
-  color: #222;
-}
-.color333 {
-  color: #333;
-}
-.color444 {
-  color: #444;
-}
-.color555 {
-  color: #555;
-}
-.color777 {
-  color: #555;
-}
-.fontSize11 {
-  font-size: 11px;
-}
-.fontSize12 {
-  font-size: 12px;
-}
-.fontSize13 {
-  font-size: 13px;
-}
-.fontSize18 {
-  font-size: 18px;
-}
-.colorWhite {
-  color: white;
-}
-.borderRadius10 {
-  border-radius: 10px;
-}
-.textDecorationNone {
-  text-decoration: none;
-}
-.backgroundColorRed {
-  background-color: red;
-}
-.backgroundColorGreen {
-  background-color: green;
-}
-.backgroundColorYellow {
-  background-color: yellow;
-}
-.backgroundColorBlue {
-  background-color: blue;
-}
-.backgroundColorPink {
-  background-color: pink;
-}
-.backgroundColorOrange {
-  background-color: orange;
-}
-.saturate50 {
-  filter: saturate(0%);
-}
-::selection {
-  background: #0d6efd; /* WebKit/Blink Browsers */
-  color: #fff;
-}
-::-moz-selection {
-  background: #0d6efd; /* Gecko Browsers */
-  color: #fff;
-}
-
-/* iPhone */
-@media only screen
-  and (max-device-width: 480px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
-
-  .cosmicMainTitle, .cosmicMainSubtitle {
-    text-align: left;
-    padding-left: 15px;
-    width: 75%
-  }
-  .cosmicMainSubtitle {
-    font-size: 1em;
-  }
-  .cosmicContainer {
-    min-width: 320px;
-    margin: 0 auto;
-  }
-  .cosmicProductImage {
-    width: 260px;
-  }
-  .cosmicProductTitle {
-    font-size: 18px;
-  }
-  .cosmicCheckoutCard {
-    max-width: 294px;
-  }
-  #paymentTestInfo {
-    width: 100%;
-    top: 140px;
-  }
-
-}
-
-/* Animations */
-@keyframes shake {
-  0% { transform: translate(0px, 0px) rotate(0deg); }
-  10% { transform: translate(-3px, -4px) rotate(-2deg); }
-  20% { transform: translate(2px, 6px) rotate(3deg); }
-  30% { transform: translate(1px, -3px) rotate(-1deg); }
-  40% { transform: translate(-4px, 2px) rotate(2deg); }
-  50% { transform: translate(-1px, 5px) rotate(-3deg); }
-  60% { transform: translate(3px, -2px) rotate(1deg); }
-  70% { transform: translate(2px, 4px) rotate(-2deg); }
-  80% { transform: translate(-5px, -1px) rotate(2deg); }
-  90% { transform: translate(-2px, 3px) rotate(-1deg); }
-  100% { transform: translate(0px, 0px) rotate(0deg); }
-}
