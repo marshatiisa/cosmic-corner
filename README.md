@@ -1,6 +1,6 @@
 # Cosmic Corner - Posters Site
 
-[Live Link](https://posters-site.cyclic.app/)
+[Live Link](https://posters-site.cyclic.app/) (Currently migrating website. If site shows error or loads basic HTML, just refresh!)
 
 Welcome to the Cosmic Corner Posters Site! This is a web application that allows users to browse through a collection of posters, add them to their cart, securely checkout, and make payments. The project is built using JavaScript, HTML, CSS, Bootstrap, Stripe API, Node.js, Express, Passport for authentication, and MongoDB for the database.
 
