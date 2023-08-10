@@ -4,7 +4,7 @@
 
 Welcome to the Cosmic Corner Posters Site! This is a web application that allows users to browse through a collection of posters, add them to their cart, securely checkout, and make payments. The project is built using JavaScript, HTML, CSS, Bootstrap, Stripe API, Node.js, Express, Passport for authentication, and MongoDB for the database.
 
-![cosmiccorner](file:///Users/marshatiisa/Downloads/cosmic-corner.png)
+![cosmiccorner](public/imgs/cosmic-corner.png)
 
 ## Features
 
@@ -20,7 +20,7 @@ Welcome to the Cosmic Corner Posters Site! This is a web application that allows
 1. Clone the repository:
    ```
    git clone https://github.com/marsha-tiisa/posters-site.git
-   cd -posters-site
+   cd posters-site
    ```
 
 2. Install dependencies:
