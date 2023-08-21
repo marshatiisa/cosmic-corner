@@ -68,6 +68,7 @@ module.exports = {
 
   getCart: async (req, res) => {
     try {
+      throw(new Error('Cart not available'))
       const cart = await CartItem.find({user: req.user.id});
       let totalCount = 0
       let totalPrice = 0
@@ -78,7 +79,7 @@ module.exports = {
       console.log('cart',cart)
       res.render("cart.ejs", { cart: cart, user: req.user, totalPrice: totalPrice, cartSize: totalCount});
     } catch (err) {
-      console.log(err);
+      console.log('error trying to get cart', err);
     }
   },
   getCheckout: async (req, res) => {
