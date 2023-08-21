@@ -29,5 +29,8 @@
     "passport-local": "^1.0.0",
     "stripe": "^11.1.0",
     "validator": "^13.6.0"
+  },
+  "devDependencies": {
+    "@flydotio/dockerfile": "^0.4.7"
   }
 }

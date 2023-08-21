@@ -68,7 +68,7 @@ module.exports = {
 
   getCart: async (req, res) => {
     try {
-      throw(new Error('Cart not available'))
+      // throw(new Error('Cart not available'))
       const cart = await CartItem.find({user: req.user.id});
       let totalCount = 0
       let totalPrice = 0
@@ -170,7 +170,7 @@ module.exports = {
     // console.log(stripe, 'checking what this contains')
     const cart = await CartItem.find({user : req.user._id});
     try {
-      res.setHeader("Access-Control-Allow-Origin", "http://localhost:9000");
+      res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
       res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
       res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type");
       res.setHeader("Access-Control-Allow-Credentials", true);
@@ -197,8 +197,8 @@ module.exports = {
         payment_method_types: ["card"],
         mode: "payment",
         // change url when you host your site
-        success_url: "http://localhost:9000/thankyou",
-        cancel_url: "http://localhost:9000/canceled"
+        success_url: "http://localhost:3000/thankyou",
+        cancel_url: "http://localhost:3000/canceled"
       });
 
       res.redirect(session.url);
