@@ -19,7 +19,6 @@ Welcome to the Cosmic Corner Posters Site! This is a web application that allows
 
 1. Clone the repository:
    ```
-   git clone https://github.com/marsha-tiisa/posters-site.git
    cd posters-site
    ```
 
