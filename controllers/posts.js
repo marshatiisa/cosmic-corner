@@ -197,8 +197,8 @@ module.exports = {
         payment_method_types: ["card"],
         mode: "payment",
         // change url when you host your site
-        success_url: "http://localhost:3000/thankyou",
-        cancel_url: "http://localhost:3000/canceled"
+        success_url: process.env.successurl,
+        cancel_url: process.env.cancel
       });
 
       res.redirect(session.url);
